@@ -1,4 +1,4 @@
-# SIF
+# THOR
 ## Because Norse Gods were cool.
 
 ### A more robust template for all your Angular.js needs.
