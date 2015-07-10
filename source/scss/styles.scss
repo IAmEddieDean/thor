@@ -1,0 +1,11 @@
+$size: 100px;
+
+.logos > img{
+  max-width: $size;
+  max-height: $size;
+}
+nav{
+  h1, li{
+    color: white;
+  }
+}
