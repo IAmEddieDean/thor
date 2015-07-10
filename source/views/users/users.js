@@ -2,25 +2,32 @@
 
 angular.module('thor')
 .controller('UsersCtrl', function($scope, $state, User){
-  console.log('user ctrl online');
-  
   $scope.name = $state.current.name.split('.')[1];
-  
+  var login = $scope.name === 'login';
+  function goHome(){
+    $state.go('home');
+  }
+  function hndlErr(err){
+    console.log(err);
+  }
+  function which(user){
+    return login ? User.login(user) : User.register(user);
+  }
   $scope.submit = function(user){
-    User.register(user)
+    which(user)
     .then(function(){
-      $state.go('home');
+      login ? goHome() : $state.go('user.login');
     }).catch(function(err){
-      console.log(err);
+      hndlErr(err);
     });
   };
   
   $scope.oauth = function(provider){
     User.oauth(provider)
     .then(function(){
-      $state.go('home');
+      goHome();
     }).catch(function(err){
-      console.log(err);
+      hndlErr(err);
     });
   };
 });
